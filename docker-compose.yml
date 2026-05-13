@@ -1,5 +1,7 @@
 services:
   # ---- Base de Datos PostgreSQL ----
+  # Ejecutar en instancia BD (44.213.157.157):
+  #   docker compose up -d cruz-azul-bd
   cruz-azul-bd:
     build:
       context: ./database
@@ -15,8 +17,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      azul-net:
-        ipv4_address: 10.10.0.10
+      - azul-net
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U cruz_azul_admin -d cruz_azul_db"]
       interval: 10s
@@ -25,6 +26,8 @@ services:
       start_period: 30s
 
   # ---- Frontend ERP (Node.js + Express) ----
+  # Ejecutar en instancia Web (54.158.161.49):
+  #   docker compose up -d cruz-azul-frontend
   cruz-azul-frontend:
     build:
       context: ./frontend
@@ -32,7 +35,7 @@ services:
     container_name: cruz-azul-frontend
     restart: always
     environment:
-      DB_HOST: cruz-azul-bd
+      DB_HOST: 10.0.1.153
       DB_PORT: 5432
       DB_NAME: cruz_azul_db
       DB_USER: cruz_azul_admin
@@ -40,21 +43,13 @@ services:
       PORT: 80
     ports:
       - "80:80"
-    depends_on:
-      cruz-azul-bd:
-        condition: service_healthy
     networks:
-      azul-net:
-        ipv4_address: 10.10.0.20
+      - azul-net
 
-# ---- Red interna dedicada ----
+# ---- Red interna para comunicación entre instancias EC2 ----
 networks:
   azul-net:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 10.10.0.0/24
-          gateway: 10.10.0.1
 
 # ---- Volumen persistente para BD ----
 volumes:
