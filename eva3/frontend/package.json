@@ -1,0 +1,24 @@
+{
+  "name": "cruz-azul-erp-frontend",
+  "version": "2.0.0",
+  "description": "Sistema ERP para Farmacias Cruz Azul - Frontend con Autenticación MFA",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.12.0",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "otplib": "^12.0.1",
+    "qrcode": "^1.5.3",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "cookie-parser": "^1.4.6"
+  },
+  "author": "Cruz Azul DevOps Team",
+  "license": "ISC"
+}

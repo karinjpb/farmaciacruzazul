@@ -1,0 +1,461 @@
+/* ============================================
+   ERP Farmacias Cruz Azul - Estilos
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background: #eef2f7;
+    color: #2d3748;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #2b6cb0 100%);
+    color: white;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo {
+    font-size: 2.8em;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+header h1 {
+    font-size: 1.7em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.header-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.online {
+    background: #48bb78;
+    box-shadow: 0 0 8px #48bb78;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.offline {
+    background: #fc8181;
+    box-shadow: 0 0 8px #fc8181;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ===== CONTENEDOR ===== */
+.container {
+    max-width: 1200px;
+    margin: 28px auto;
+    padding: 0 24px;
+    flex: 1;
+}
+
+/* ===== STATS ===== */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.stat-icon { font-size: 2.2em; }
+
+.stat-number {
+    display: block;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1a365d;
+}
+
+.stat-label {
+    font-size: 0.8em;
+    color: #718096;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.card h2 {
+    color: #1a365d;
+    margin-bottom: 20px;
+    font-size: 1.25em;
+    font-weight: 700;
+}
+
+/* ===== FORMULARIO ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.82em;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+input, select, textarea {
+    padding: 11px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.92em;
+    font-family: inherit;
+    transition: all 0.25s;
+    background: #f7fafc;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #2b6cb0;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(43,108,176,0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2b6cb0, #1a365d);
+    color: white;
+    border: none;
+    padding: 13px 34px;
+    border-radius: 10px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.25s;
+    letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(26,54,93,0.35);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: #ebf4ff;
+    color: #2b6cb0;
+    border: 2px solid #2b6cb0;
+    padding: 9px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 0.85em;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #bee3f8;
+}
+
+.btn-delete {
+    background: none;
+    border: 2px solid #fc8181;
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: #fff5f5;
+    transform: scale(1.1);
+}
+
+/* ===== TABLA ===== */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.table-container { overflow-x: auto; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+thead {
+    background: linear-gradient(135deg, #1a365d, #2b6cb0);
+    color: white;
+}
+
+th {
+    padding: 13px 16px;
+    text-align: left;
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #edf2f7;
+    font-size: 0.88em;
+    vertical-align: middle;
+}
+
+tbody tr {
+    transition: background 0.15s;
+}
+
+tbody tr:hover {
+    background: #f0f7ff;
+}
+
+.desc-text {
+    color: #a0aec0;
+    font-size: 0.85em;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78em;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-medicamentos { background: #ebf4ff; color: #2b6cb0; }
+.badge-vitaminas { background: #f0fff4; color: #276749; }
+.badge-higiene { background: #fefcbf; color: #975a16; }
+.badge-proteccion { background: #fed7e2; color: #97266d; }
+.badge-dermocosmeticos { background: #faf5ff; color: #6b46c1; }
+.badge-otros { background: #edf2f7; color: #4a5568; }
+
+.precio {
+    font-weight: 700;
+    color: #276749;
+}
+
+.stock-cell {
+    font-weight: 600;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #a0aec0;
+    font-style: italic;
+}
+
+.error-text { color: #e53e3e; }
+
+/* ===== MENSAJES ===== */
+.mensaje {
+    margin-top: 16px;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9em;
+    animation: slideIn 0.3s ease;
+}
+
+.mensaje.success { background: #f0fff4; color: #276749; border: 1px solid #9ae6b4; }
+.mensaje.error { background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADER RIGHT (User Info) ===== */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85em;
+}
+
+#userDisplay {
+    background: rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.btn-header {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.82em;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-header:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+.btn-logout:hover {
+    background: rgba(252, 129, 129, 0.3);
+    border-color: #fc8181;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 18px;
+    padding: 32px;
+    max-width: 480px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h2 {
+    color: #1a365d;
+    margin-bottom: 16px;
+    font-size: 1.3em;
+}
+
+.modal-content p {
+    color: #4a5568;
+    font-size: 0.9em;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 22px;
+    color: #a0aec0;
+    font-size: 0.82em;
+    border-top: 1px solid #e2e8f0;
+    background: white;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .header-right { flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 600px) {
+    header { flex-direction: column; gap: 12px; padding: 18px 20px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+    .container { padding: 0 14px; }
+    header h1 { font-size: 1.3em; }
+    .user-info { flex-wrap: wrap; justify-content: center; }
+}
