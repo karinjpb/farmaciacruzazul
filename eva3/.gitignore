@@ -1,0 +1,8 @@
+node_modules/
+.env
+*.log
+pgdata/
+.DS_Store
+*.pem
+*.dump
+/tmp/backups/

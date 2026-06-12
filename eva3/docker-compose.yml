@@ -1,0 +1,65 @@
+services:
+  # ---- Base de Datos PostgreSQL (Desarrollo Local) ----
+  # En producción: usar docker-compose.rds.yml que apunta a AWS RDS
+  cruz-azul-bd:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: cruz-azul-bd
+    restart: always
+    environment:
+      POSTGRES_DB: cruz_azul_db
+      POSTGRES_USER: cruz_azul_admin
+      POSTGRES_PASSWORD: CruzAzul2026!
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      azul-net:
+        ipv4_address: 10.10.0.10
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U cruz_azul_admin -d cruz_azul_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ---- Frontend ERP (Node.js + Express + MFA) ----
+  cruz-azul-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cruz-azul-frontend
+    restart: always
+    environment:
+      DB_HOST: cruz-azul-bd
+      DB_PORT: 5432
+      DB_NAME: cruz_azul_db
+      DB_USER: cruz_azul_admin
+      DB_PASSWORD: CruzAzul2026!
+      PORT: 80
+      JWT_SECRET: cruzazul-erp-jwt-secret-2026-seguro
+      NODE_ENV: production
+    ports:
+      - "80:80"
+    depends_on:
+      cruz-azul-bd:
+        condition: service_healthy
+    networks:
+      azul-net:
+        ipv4_address: 10.10.0.20
+
+# ---- Red interna dedicada ----
+networks:
+  azul-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
+          gateway: 10.10.0.1
+
+# ---- Volumen persistente para BD ----
+volumes:
+  pgdata:
+    driver: local

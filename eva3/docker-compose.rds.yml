@@ -1,0 +1,37 @@
+# =============================================
+# Docker Compose — Producción con AWS RDS
+# Frontend conecta directamente al endpoint RDS
+# No se levanta contenedor de BD local
+# =============================================
+
+services:
+  # ---- Frontend ERP (Node.js + Express + MFA) ----
+  cruz-azul-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cruz-azul-frontend
+    restart: always
+    environment:
+      DB_HOST: cruz-azul-db.cdarw4savmfx.us-east-1.rds.amazonaws.com
+      DB_PORT: 5432
+      DB_NAME: cruz_azul_db
+      DB_USER: cruz_azul_admin
+      DB_PASSWORD: CruzAzul2026!
+      PORT: 80
+      JWT_SECRET: cruzazul-erp-jwt-secret-2026-seguro
+      NODE_ENV: production
+    ports:
+      - "80:80"
+    networks:
+      azul-net:
+        ipv4_address: 10.10.0.20
+
+# ---- Red interna dedicada ----
+networks:
+  azul-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
+          gateway: 10.10.0.1
