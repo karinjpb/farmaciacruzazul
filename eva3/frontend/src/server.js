@@ -43,18 +43,19 @@ const loginLimiter = rateLimit({
 });
 
 // Servir archivos estáticos (login, etc.)
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public'), { index: false }));
 
 // ===== CONEXIÓN A POSTGRESQL =====
 const pool = new Pool({
-    host: process.env.DB_HOST || 'cruz-azul-bd',
+    host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 5432,
     database: process.env.DB_NAME || 'cruz_azul_db',
     user: process.env.DB_USER || 'cruz_azul_admin',
     password: process.env.DB_PASSWORD || 'CruzAzul2026!',
     max: 10,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 5000
+    connectionTimeoutMillis: 5000,
+    ssl: process.env.DB_HOST && process.env.DB_HOST.includes('rds') ? { rejectUnauthorized: false } : false
 });
 
 pool.query('SELECT NOW()')
